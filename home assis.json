@@ -1,0 +1,865 @@
+[
+    {
+        "id": "4c23cce5b8a0c5ee",
+        "type": "tab",
+        "label": "Flow 8",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6be3be6a.7006a8",
+        "type": "debug",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "Leitura da Temperatura",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "ca97750dce6db29f",
+        "type": "mqtt out",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "quarto",
+        "topic": "ramos33/room",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9fc6b44f359984aa",
+        "x": 550,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "75243d4dcd08a22e",
+        "type": "mqtt in",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "quarto",
+        "topic": "ramos33/room/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "9fc6b44f359984aa",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "6be3be6a.7006a8",
+                "9d3518a7b506acb6"
+            ]
+        ]
+    },
+    {
+        "id": "9d3518a7b506acb6",
+        "type": "ui_gauge",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "433471c4608aebdf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "graus",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 770,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "296568909fcd23d9",
+        "type": "ui_button",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "25611b60105465f6",
+        "order": 2,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "OFF",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 370,
+        "y": 80,
+        "wires": [
+            [
+                "ca97750dce6db29f"
+            ]
+        ]
+    },
+    {
+        "id": "cd893589817f3e5d",
+        "type": "ui_button",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "25611b60105465f6",
+        "order": 1,
+        "width": 2,
+        "height": 2,
+        "passthru": false,
+        "label": "ON",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 370,
+        "y": 40,
+        "wires": [
+            [
+                "ca97750dce6db29f"
+            ]
+        ]
+    },
+    {
+        "id": "27e07f338d9fa655",
+        "type": "mqtt in",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "quarto",
+        "topic": "ramos33/room/temperature",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "9fc6b44f359984aa",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "19d5bafc196fef5b"
+            ]
+        ]
+    },
+    {
+        "id": "19d5bafc196fef5b",
+        "type": "json",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 140,
+        "wires": [
+            [
+                "ede34a2a7437d457"
+            ]
+        ]
+    },
+    {
+        "id": "ede34a2a7437d457",
+        "type": "ui_text",
+        "z": "4c23cce5b8a0c5ee",
+        "group": "433471c4608aebdf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Weather",
+        "format": "{{payload}} °C",
+        "layout": "row-spread",
+        "className": "",
+        "x": 860,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9c35f7c3f8b9560a",
+        "type": "mqtt in",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "quarto",
+        "topic": "ramos33/room/humidity",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "9fc6b44f359984aa",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 550,
+        "y": 200,
+        "wires": [
+            [
+                "44c24fe78f318199"
+            ]
+        ]
+    },
+    {
+        "id": "44c24fe78f318199",
+        "type": "json",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "e9855790df32294f"
+            ]
+        ]
+    },
+    {
+        "id": "e9855790df32294f",
+        "type": "ui_text",
+        "z": "4c23cce5b8a0c5ee",
+        "group": "433471c4608aebdf",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Humidity",
+        "format": "{{payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 880,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8d2c5bc74dfc5bf8",
+        "type": "mqtt out",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "luz",
+        "topic": "ramos33/room",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9fc6b44f359984aa",
+        "x": 730,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dd64441ffe5afee9",
+        "type": "debug",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "26018aabaa4486ae",
+        "type": "ui_microphone",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "25611b60105465f6",
+        "order": 4,
+        "width": "4",
+        "height": "1",
+        "maxLength": 5,
+        "maxRecogLength": 5,
+        "timeslice": 0,
+        "press": "click",
+        "mode": "recog",
+        "interimResults": false,
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "6d6ef6b6c9a2dcef"
+            ]
+        ]
+    },
+    {
+        "id": "6d6ef6b6c9a2dcef",
+        "type": "function",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "function 3",
+        "func": "var ai = msg.payload.toLowerCase(); // Entrada de voz em minúsculas\nvar lightOnKeywords = [\"light on\"];\nvar lightOffKeywords = [\"light off\"];\n\nvar lightValue = 0; // Valor padrão para luz (0 = desligado)\n\nif (lightOnKeywords.some(keyword => ai.includes(keyword))) {\n    lightValue = 1; // Se a entrada contém \"light on\", ligue a luz (valor 1)\n}\n\nif (lightOffKeywords.some(keyword => ai.includes(keyword))) {\n    lightValue = 0; // Se a entrada contém \"light off\", desligue a luz (valor 0)\n}\n\n// Envie o valor da luz via MQTT\nmsg.payload = lightValue;\n\nreturn msg;\n",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 280,
+        "wires": [
+            [
+                "8d2c5bc74dfc5bf8",
+                "dd64441ffe5afee9"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ee7bac2a0d9a4b5e",
+        "type": "mqtt in",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "Receber Temperatura",
+        "topic": "ramos33/room/temperature",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "9fc6b44f359984aa",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "9e678ff7fe2c88b5"
+            ]
+        ]
+    },
+    {
+        "id": "9e678ff7fe2c88b5",
+        "type": "switch",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "Temperatura > 22°C?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "22",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "c70fce028c6f19df"
+            ]
+        ]
+    },
+    {
+        "id": "c70fce028c6f19df",
+        "type": "change",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "Ligar LED",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "271640d14715d476"
+            ]
+        ]
+    },
+    {
+        "id": "271640d14715d476",
+        "type": "ui_led",
+        "z": "4c23cce5b8a0c5ee",
+        "order": 3,
+        "group": "433471c4608aebdf",
+        "width": 0,
+        "height": 0,
+        "label": "alert",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 910,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d5fe70e45da85391",
+        "type": "ui_button",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "1d6806ff88918e23",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "min 0 %",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "13494be354eb74e7"
+            ]
+        ]
+    },
+    {
+        "id": "647d2de8c723d0e0",
+        "type": "ui_button",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "1d6806ff88918e23",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "50%",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "90",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 390,
+        "y": 520,
+        "wires": [
+            [
+                "13494be354eb74e7"
+            ]
+        ]
+    },
+    {
+        "id": "8adf89ad6d553c41",
+        "type": "ui_button",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "1d6806ff88918e23",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "100%",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "180",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "13494be354eb74e7"
+            ]
+        ]
+    },
+    {
+        "id": "4ebf1c789d11a492",
+        "type": "ui_slider",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "label": "slider",
+        "tooltip": "",
+        "group": "1d6806ff88918e23",
+        "order": 5,
+        "width": "1",
+        "height": "4",
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "180",
+        "step": 1,
+        "className": "",
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "13494be354eb74e7"
+            ]
+        ]
+    },
+    {
+        "id": "13494be354eb74e7",
+        "type": "function",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "node",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 560,
+        "wires": [
+            [
+                "2446a448de18bf87",
+                "9ce2a8893d4bda96",
+                "37ae97cec1d47404",
+                "68f809e8e2bed484"
+            ]
+        ]
+    },
+    {
+        "id": "2446a448de18bf87",
+        "type": "mqtt out",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "servo",
+        "topic": "ramos33/control",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9fc6b44f359984aa",
+        "x": 730,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "9ce2a8893d4bda96",
+        "type": "ui_gauge",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "1d6806ff88918e23",
+        "order": 6,
+        "width": "4",
+        "height": "3",
+        "gtype": "donut",
+        "title": "",
+        "label": "",
+        "format": "{{payload}} ",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "90",
+        "diff": false,
+        "className": "",
+        "x": 730,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "34a0aeb49877ab58",
+        "type": "link in",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "link in 2",
+        "links": [
+            "37ae97cec1d47404"
+        ],
+        "x": 365,
+        "y": 620,
+        "wires": [
+            [
+                "4ebf1c789d11a492"
+            ]
+        ]
+    },
+    {
+        "id": "37ae97cec1d47404",
+        "type": "link out",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "34a0aeb49877ab58"
+        ],
+        "x": 685,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "7c0f8489b72a6be3",
+        "type": "function",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "function 4",
+        "func": "var ai = msg.payload.toLowerCase(); // Entrada de voz em minúsculas\nvar blindOpenKeywords = [\"open window\", \"open blind\"];\nvar blindCloseKeywords = [\"close window\", \"close blind\"];\n\nvar blindValue = 0; // Valor padrão para a cortina (0 = fechada)\n\nif (blindOpenKeywords.some(keyword => ai.includes(keyword))) {\n    blindValue = 180; // Se a entrada contém \"open window\" ou \"open blind\", abra a cortina (valor 1)\n}\n\nif (blindCloseKeywords.some(keyword => ai.includes(keyword))) {\n    blindValue = 0; // Se a entrada contém \"close window\" ou \"close blind\", feche a cortina (valor 0)\n}\n\n// Envie o valor da cortina via MQTT\nmsg.payload = blindValue;\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 620,
+        "wires": [
+            [
+                "13494be354eb74e7"
+            ]
+        ]
+    },
+    {
+        "id": "b44db8124da5f83c",
+        "type": "ui_microphone",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "group": "1d6806ff88918e23",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "maxLength": 5,
+        "maxRecogLength": 5,
+        "timeslice": 0,
+        "press": "click",
+        "mode": "recog",
+        "interimResults": false,
+        "x": 400,
+        "y": 660,
+        "wires": [
+            [
+                "7c0f8489b72a6be3"
+            ]
+        ]
+    },
+    {
+        "id": "9a988d69c5c3cc79",
+        "type": "mqtt out",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "servo",
+        "topic": "ramos33/switch",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "9fc6b44f359984aa",
+        "x": 730,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "bcdc696fe6a0b940",
+        "type": "ui_switch",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "",
+        "label": "manual",
+        "tooltip": "",
+        "group": "1d6806ff88918e23",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "0",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "1",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 390,
+        "y": 700,
+        "wires": [
+            [
+                "9a988d69c5c3cc79"
+            ]
+        ]
+    },
+    {
+        "id": "68f809e8e2bed484",
+        "type": "debug",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "33c25b460d572931",
+        "type": "ui_spacer",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "spacer",
+        "group": "25611b60105465f6",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "2add5ec2b4d5371f",
+        "type": "ui_spacer",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "spacer",
+        "group": "25611b60105465f6",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "0423c4e0977a13cb",
+        "type": "ui_spacer",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "spacer",
+        "group": "1d6806ff88918e23",
+        "order": 4,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "1607b14668a911f8",
+        "type": "ui_spacer",
+        "z": "4c23cce5b8a0c5ee",
+        "name": "spacer",
+        "group": "1d6806ff88918e23",
+        "order": 7,
+        "width": "5",
+        "height": "1"
+    },
+    {
+        "id": "9fc6b44f359984aa",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "10.20.38.56",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "433471c4608aebdf",
+        "type": "ui_group",
+        "name": "temperature",
+        "tab": "7c26ebfe2033a773",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "25611b60105465f6",
+        "type": "ui_group",
+        "name": "LAMP",
+        "tab": "7c26ebfe2033a773",
+        "order": 2,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1d6806ff88918e23",
+        "type": "ui_group",
+        "name": "windows",
+        "tab": "7c26ebfe2033a773",
+        "order": 2,
+        "disp": true,
+        "width": "5",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7c26ebfe2033a773",
+        "type": "ui_tab",
+        "name": "room",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
